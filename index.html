@@ -40,7 +40,7 @@
         display: none !important;
     }
 
-    /* উপরের ছবির বক্স: 60% */
+    /* উপরের ছবির বক্স: ঠিক ৬০% */
     .top-half {
         height: 60%;
         flex: 0 0 60%;
@@ -51,59 +51,51 @@
         justify-content: center;
         background-color: white;
         border-bottom: 1px solid #e1e4e8;
-        padding: 5px;
+        padding: 0;
         overflow: hidden;
     }
 
-    /* মূল ছবি: পুরোটা দেখা যাবে */
+    /* মূল ছবি: একুরেটভাবে বক্সের মাপে ফিট করা (cover) */
     .top-half img {
         display: block;
         width: 100%;
         height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
-        border-radius: 8px;
     }
 
-    /* নিচের অংশ: 40% */
+    /* নিচের অংশ: ঠিক ৪০% এবং ফিক্সড বিন্যাস */
     .bottom-half {
         height: 40%;
         flex: 1 1 40%;
         width: 100%;
         min-height: 0;
         background: #f7f9fc;
-        padding: 8px 16px 12px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 7px;
-        position: relative;
-        overflow-x: hidden;
-        overflow-y: auto;
-        text-align: center;
-        overscroll-behavior: contain;
-    }
-
-    /* লোগো, হেডলাইন, লেখা ও বাটন */
-    #step1 {
-        width: 100%;
-        max-width: 450px;
-        margin: auto 0;
+        padding: 6px 16px 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 9px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    /* লোগো, হেডলাইন, লেখা ও বাটন বক্স */
+    #step1 {
+        width: 100%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
         flex-shrink: 0;
     }
 
     /* ছোট লোগো */
     .home-logo {
-        width: 54px;
-        height: 54px;
+        width: 42px;
+        height: 42px;
         flex-shrink: 0;
         display: flex;
         align-items: center;
@@ -111,6 +103,7 @@
         overflow: hidden;
         border-radius: 50%;
         background: #ffffff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
     .home-logo img {
@@ -121,40 +114,46 @@
         object-position: center;
     }
 
-    /* হেডলাইন */
+    /* হেডলাইন (এক লাইন) */
     #step1 h2 {
-        font-size: clamp(20px, 5vw, 26px);
-        line-height: 1.3;
+        font-size: clamp(18px, 4.5vw, 23px);
+        line-height: 1.2;
         font-weight: 800;
         color: #111827;
         margin: 0;
+        white-space: nowrap;
     }
 
-    /* ব্যাখ্যার লেখা */
+    /* ব্যাখ্যার লেখা (দুই লাইন) */
     #step1 p {
-        font-size: clamp(15px, 3.9vw, 17px);
-        line-height: 1.6;
+        font-size: clamp(13px, 3.4vw, 15px);
+        line-height: 1.4;
         font-weight: 400;
         color: #4b5563;
         margin: 0;
-        padding: 0 2px;
+        padding: 0 4px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     /* বাটন */
     .btn-blue {
         width: 100%;
-        max-width: 350px;
-        min-height: 50px;
+        max-width: 330px;
+        min-height: 44px;
         background-color: #1877f2;
         color: white;
         font-weight: bold;
-        padding: 13px 16px;
-        border-radius: 12px;
+        padding: 10px 16px;
+        border-radius: 11px;
         cursor: pointer;
         border: none;
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
         flex-shrink: 0;
+        box-shadow: 0 2px 4px rgba(24, 119, 242, 0.25);
     }
 
     /* ইনপুট */
@@ -170,61 +169,40 @@
     }
 
     @keyframes progressMove {
-        0% {
-            transform: translateX(-100%);
-        }
-        100% {
-            transform: translateX(100%);
-        }
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
     }
 
     .animate-progress {
         animation: progressMove 2s infinite linear;
     }
 
-    /* ছোট উচ্চতার ফোন */
+    /* ছোট উচ্চতার ফোনের জন্য রেসপনসিভ */
     @media (max-height: 600px) {
-        .top-half {
-            height: 60%;
-            flex-basis: 60%;
-        }
-
-        .bottom-half {
-            height: 40%;
-            flex-basis: 40%;
-            padding: 6px 12px 8px;
-            gap: 5px;
-        }
-
-        #step1 {
-            gap: 6px;
-        }
-
         .home-logo {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
         }
-
+        #step1 {
+            gap: 4px;
+        }
         #step1 h2 {
-            font-size: 19px;
+            font-size: 17px;
         }
-
         #step1 p {
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 12px;
         }
-
         .btn-blue {
-            min-height: 44px;
-            font-size: 16px;
-            padding: 10px;
+            min-height: 38px;
+            font-size: 14px;
+            padding: 8px;
         }
     }
 </style>
 </head>
 <body onload="initApp()">
 
-    <!-- মূল ব্যাকগ্রাউন্ড পেজ -->
+    <!-- মূল ব্যাকগ্রাউন্ড পেজ (উপরের ৬০%) -->
     <div class="top-half" id="main_top_image">
         <img
             src="https://raw.githubusercontent.com/passportchaking-io/e_passport_help_center.gv.bd/main/1791494677132.jpg"
@@ -232,11 +210,11 @@
         >
     </div>
 
-    <!-- নিচের হোমপেজ কনটেন্ট -->
+    <!-- নিচের হোমপেজ কনটেন্ট (৪০%) -->
     <div class="bottom-half text-center" id="main_bottom_content">
         <div id="step1">
 
-            <!-- ছোট লোগো -->
+            <!-- লোগো (হেডলাইনের ঠিক উপরে মাঝখানে) -->
             <div class="home-logo">
                 <img
                     src="https://raw.githubusercontent.com/passportchaking11/Saudiarab_E_Passport_help_center/main/IMG_20261104_041015_820.jpg"
@@ -244,14 +222,12 @@
                 >
             </div>
 
-            <!-- হেডলাইন -->
+            <!-- হেডলাইন (এক লাইন) -->
             <h2>সরাসরি পাসপোর্ট চেক করুন</h2>
 
-            <!-- ব্যাখ্যা -->
+            <!-- ব্যাখ্যা (দুই লাইন) -->
             <p>
-                সরাসরি অনলাইনে আপনার পাসপোর্ট নাম্বার দিয়ে
-                চেক করতে পারবেন বর্তমানে আপনার পাসপোর্ট কোন অবস্থায় আছে।
-                এজন্য নিচের বাটনে ক্লিক করুন।
+                অনলাইনে আপনার পাসপোর্ট নাম্বার দিয়ে খুব সহজেই বর্তমান অবস্থা যাচাই করুন।
             </p>
 
             <!-- বাটন -->
@@ -261,7 +237,6 @@
 
         </div>
     </div>
-</div>
 
     <!-- পপ-আপ মোডালগুলো -->
     <div id="permission_modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] flex items-center justify-center p-4">
